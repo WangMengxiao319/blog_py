@@ -11,7 +11,7 @@ MarkupSafe   2.0.1
 pip          21.3.1
 setuptools   49.2.1
 Werkzeug     2.0.2
-
+```
 结构
 ----
 ```
@@ -1651,5 +1651,4 @@ blog
 │  └─ post.html
 └─ __pycache__
    └─ setting.cpython-38.pyc
-
 ```
