@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+<!-- 继承base的模板 -->
+
+{% block content %}
+    <h1> Welcome to 算法管理系统说明文档 </h1>
+    <!-- 注意这里的title变量会被重用。它既是title占位符的内容，也是content占位符的一部分。 -->
+    {% for post in posts %}  
+    <!-- 这里的posts就是主函数render_template传过来的变量-->
+    <a href = "{{url_for('post',post_id=post['id'])}}">
+        <h2>{{post['title']}}</h2>
+    </a>
+    <span class="badge badge-primary">{{post['created']}}</span>
+    <a href="{{ url_for('edit', id=post['id']) }}">
+        <span class="badge badge-warning">编辑</span>
+    </a>
+    <a href="{{ url_for('delete', id=post['id']) }}">
+        <span class="badge badge-danger" onclick="return confirm('确定要删除吗?')">删除</span>
+        <!-- <input type="submit" value="删除" class="btn btn-danger btn-sm"
+        onclick="return confirm('确定要删除吗?')"> -->
+    </a>
+    <hr>
+    {% endfor %}
+{% endblock %}
+
+{% block title %}document{% endblock %}

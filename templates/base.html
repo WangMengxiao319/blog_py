@@ -1,0 +1,40 @@
+<!-- 模板文件 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/bootstrap.min.css') }}">
+    <title>{% block title %} {% endblock %}</title> 
+    <!-- 标题占位符，相当于定义了名为title的变量，后面会被具体内容替换掉 -->
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index')}}">欢迎页</a>
+        <!-- 这个index是blog.py中的函数index，可以直接代表路径 -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('new')}}">发布文章</a>
+                <!-- #代表空地址，后续会填进去 -->
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div class='container'>
+        {% for message in get_flashed_messages()%}
+        
+        <div class="alert alert-danger">{{message}}</div>
+        {%endfor%}
+        {% block content %} {% endblock %}
+    </div>
+    <!-- 引入js文件 -->
+    <script src="{{url_for('static', filename='js/jquery.slim.min.js')}}" ></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}" ></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}" ></script>
+</body>
+</html>
